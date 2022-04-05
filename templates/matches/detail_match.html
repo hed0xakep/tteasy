@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Add match{% endblock %}
+{% block content %}
+  {{ match.date }}
+  {{ match.p1 }} - {{ match.p2 }}
+  {{ match.score1 }} - {{ match.score2 }}
+{% if video %}
+<a href={{ video.url }}>Download</a>
+      <video src="{{ video.url }}" type="video/mp4" controls="controls" width="600" height="338">
+        </video>
+{% endif %}
+{% endblock %}

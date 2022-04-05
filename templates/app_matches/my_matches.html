@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Matches{% endblock %}
+{% block content %}
+  {% if not_confirmed %}
+  <h4><a href="{% url 'not_confirmed' %}">Неподтвержденные матчи({{ not_confirmed }})</a></h4>
+  {% endif %}
+  {% for match in matches %}
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h3><a href="/{{ match.p1 }}">{{ match.p1 }}</a> - <a href="/{{ match.p2 }}">{{ match.p2 }}</a></h3>
+      <b><p>{{ match.score1 }} - {{ match.score2 }}</p></b>
+      <p>{{ match.date }}</p>
+      <h5><a href="{{ match.get_absolute_url }}">Detail</a><h5>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}

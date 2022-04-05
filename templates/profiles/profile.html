@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.username }}{% endblock %}
+{% block content %}
+{% if user.avatar %}
+<a href={{ user.avatar.url }}>Download</a>
+sdfgdsgdsgdf
+      <img src="{{ user.avatar.url }}" width="600" height="338">
+        </img>
+{% else %}
+sdfsdfsdfsfsfsfsfsfsfsfsf
+{% endif %}
+<h1>{{ user.username }}</h1>
+<h3>{{ user.first_name }} {{ user.last_name }}</h3>
+<h3>Пол: {{ gender }}</h3>
+<p>{{ user.info }}</p>
+<h4><a href="{% url 'user_statistics' user %}">{{ user }} statistics</a></h4>
+<br>
+<h3>Матчи пользователя</h3>
+{% for match in matches %}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3><a href="/{{ match.p1 }}">{{ match.p1 }}</a> - <a href="/{{ match.p2 }}">{{ match.p2 }}</a></h3>
+    <b><p>{{ match.score1 }} - {{ match.score2 }}</p></b>
+    <p>{{ match.date }}</p>
+    <h5><a href="{{ match.get_absolute_url }}">Detail</a><h5>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

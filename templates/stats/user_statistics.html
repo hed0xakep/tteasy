@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ user }} statistics{% endblock %}
+{% block content %}
+<h1>Статистика пользователя {{ user }}</h1>
+  <h3>Количество матчей: {{ games }}</h3>
+  <h3>Выигрыши: {{ wins }}</h3>
+  <h3>Проигрыши: {{ loses }}</h3>
+  <h3>Выигрыши "всухую": {{ dry_wins }}</h3>
+  <h3>Проигрыши "всухую": {{ dry_loses }}</h3>
+  <h3>Процент побед/поражений: {{ wins_perc }}% на {{ loses_perc }}%</h3>
+  <h3>Кол-во выигранных/проигранных сетов: {{ win_sets }} на {{ lose_sets }}</h3>
+  <h2>Проценты побед в сетах</h2>
+  <h4>1 - {{ win_s1_perc }}%</h4>
+  <h4>2 - {{ win_s2_perc }}%</h4>
+  <h4>3 - {{ win_s3_perc }}%</h4>
+  <h4>4 - {{ win_s4_perc }}%</h4>
+  <h4>5 - {{ win_s5_perc }}%</h4>
+{% endblock %}

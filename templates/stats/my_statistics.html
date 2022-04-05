@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}My statistics{% endblock %}
+{% block content %}
+<h1>Публичная статистика</h1>
+  <h3>Количество матчей: {{ games }}</h3>
+  <h3>Выигрыши: {{ wins }}</h3>
+  <h3>Проигрыши: {{ loses }}</h3>
+  <h3>Выигрыши "всухую": {{ dry_wins }}</h3>
+  <h3>Проигрыши "всухую": {{ dry_loses }}</h3>
+  <h3>Процент побед/поражений: {{ wins_perc }}% на {{ loses_perc }}%</h3>
+  <h3>Кол-во выигранных/проигранных сетов: {{ win_sets }} на {{ lose_sets }}</h3>
+  <h2>Проценты побед в сетах</h2>
+  <h4>1 - {{ win_s1_perc }}%</h4>
+  <h4>2 - {{ win_s2_perc }}%</h4>
+  <h4>3 - {{ win_s3_perc }}%</h4>
+  <h4>4 - {{ win_s4_perc }}%</h4>
+  <h4>5 - {{ win_s5_perc }}%</h4>
+<br>
+<h1>Приватная статистика</h1>
+  <h2>Количество матчей: {{ games_private }}</h2>
+  <h3>Выигрыши: {{ wins_private }}</h3>
+  <h3>Проигрыши: {{ loses_private }}</h3>
+  <h3>Выигрыши "всухую": {{ dry_wins_private }}</h3>
+  <h3>Проигрыши "всухую": {{ dry_loses_private }}</h3>
+  <h3>Процент побед/поражений: {{ wins_perc_private }}% на {{ loses_perc_private }}%</h3>
+  <h3>Кол-во выигранных/проигранных сетов: {{ win_sets_private }} на {{ lose_sets_private }}</h3>
+  <h2>Проценты побед в сетах</h2>
+  <h4>1 - {{ win_s1_perc_private }}%</h4>
+  <h4>2 - {{ win_s2_perc_private }}%</h4>
+  <h4>3 - {{ win_s3_perc_private }}%</h4>
+  <h4>4 - {{ win_s4_perc_private }}%</h4>
+  <h4>5 - {{ win_s5_perc_private }}%</h4>
+{% endblock %}
+
+<!--
+  context['games'] = games
+  context['wins'] = wins
+  context['loses'] = loses
+  context['dry_wins'] = dry_wins
+  context['dry_loses'] = dry_loses
+  context['wins_perc'] = wins_perc
+  context['loses_perc'] = loses_perc
+  context['win_sets'] = win_sets
+  context['lose_sets'] = lose_sets
+  context['win_s1_perc'] = win_s1_perc
+  context['win_s2_perc'] = win_s2_perc
+  context['win_s3_perc'] = win_s3_perc
+  context['win_s4_perc'] = win_s4_perc
+  context['win_s5_perc'] = win_s5_perc
+  context['lose_s1_perc'] = lose_s1_perc
+  context['lose_s2_perc'] = lose_s2_perc
+  context['lose_s3_perc'] = lose_s3_perc
+  context['lose_s4_perc'] = lose_s4_perc
+  context['lose_s5_perc'] = lose_s5_perc
+-->

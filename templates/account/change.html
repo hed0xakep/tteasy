@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Change settings{% endblock %}
+{% block content %}
+<form method="POST" action="{% url 'change_user_url' %}" enctype='multipart/form-data'>
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input name="save_user" type="submit" value="Save" class="btn btn_primary"></input>
+</form>
+<a href="/#">Forgot your password?</a>
+{% endblock %}

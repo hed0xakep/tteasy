@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Recover password{% endblock %}
+{% block content %}
+<form method="POST" action="{% url 'recover' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input type="submit" value="Ok" class="btn btn_primary"></input>
+</form>
+{% endblock %}

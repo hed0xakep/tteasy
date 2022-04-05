@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Matches{% endblock %}
+{% block content %}
+  <a href="{% url 'add_match' %}">Добавить матч</a>
+  <a href="{% url 'all_matches' %}">Все матчи</a>
+  <a href="{% url 'my_matches' %}">Мои матчи</a>
+{% endblock %}

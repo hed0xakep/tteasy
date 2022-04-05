@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Activate code{% endblock %}
+{% block content %}
+<h4>Мы выслали вам на почту код подверждения. Введдите его для регистрации аккаунта.</h4>
+<form method="POST" action="{% url 'activate' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input name="activate" type="submit" value="Ok" class="btn btn_primary"></input>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Players list{% endblock %}
+{% block content %}
+{% for player in players %}
+  <h3>{{ player.username }}</h3>
+  {{ player.first_name }}
+  {{ player.last_name }}
+  <br>
+{% endfor %}
+{% endblock %}
