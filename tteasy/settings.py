@@ -11,8 +11,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'accounts',
     'crispy_forms',
@@ -26,6 +24,7 @@ INSTALLED_APPS = [
     'matches',
     'stats',
     'homepage',
+    #'cities',
 
 ]
 
@@ -112,25 +111,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 AUTH_USER_MODEL = 'accounts.CustomUser'
-STATIC_URL = '/static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+DOMAIN = '127.0.0.1:8000'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/account/login'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_DIR = os.path.abspath(BASE_DIR + MEDIA_URL)
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "**********************"
 EMAIL_HOST_PASSWORD = "*************"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-MEDIA_DIR = os.path.abspath(BASE_DIR + MEDIA_URL)
-
-DOMAIN = '127.0.0.1:8000'

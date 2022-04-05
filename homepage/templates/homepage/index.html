@@ -1,4 +1,9 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'homepage/css/style.css' %}">
+{% endblock %}
 
 {% block title %}
     Homepage

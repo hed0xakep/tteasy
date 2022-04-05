@@ -1,4 +1,8 @@
+{% load static %}
 {% extends 'base.html' %}
+{{ block head }}
+<link rel="stylesheet" type="text/css" href="{% static 'homepage/css/style.css' %}">
+{{ endblock }}
 {{ block content }}
 {{ request.user }}
 {{ request.user.is_authenticated }}
