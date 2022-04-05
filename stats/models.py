@@ -1,6 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+
 class PublicStatisticsModel(models.Model):
     wins = models.PositiveSmallIntegerField(default=0)
     loses = models.PositiveSmallIntegerField(default=0)

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="mt-5">
+      {{ post1.title }}
+    </h1>
+    <p>
+        {{ post1.body }}
+    </p>
+    <br>
+    <p>
+      {{ post1.date_pub }}
+    </p>
+{% endblock %}

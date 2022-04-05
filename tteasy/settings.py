@@ -14,6 +14,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,12 +22,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'homepage',
     'user_profiles',
     'matches',
     'stats',
-    'accounts',
-    'sorl.thumbnail'
+    'homepage',
+
 ]
 
 MIDDLEWARE = [

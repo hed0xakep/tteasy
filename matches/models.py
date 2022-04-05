@@ -1,9 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import FileExtensionValidator
-from django.contrib.auth import get_user_model
+from accounts.models import CustomUser
 
-CustomUser = get_user_model()
 
 
 class MatchModel(models.Model):
@@ -33,7 +32,7 @@ class MatchModel(models.Model):
             self.likes.remove(user)
             return
         self.likes.add(user)
-        
+
     @property
     def likes(self):
         return self.likes.count()
