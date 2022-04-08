@@ -109,7 +109,7 @@ def custom_login(request):
                         code = generate_code()
                         print('------------CODE------------\n',code,'\n------------CODE------------')
                         request.session['code'] = code
-                        send_mail('tteasy', code, settings.EMAIL_HOST_USER, (email,)) вернуть в релиз
+                        send_mail('tteasy', code, settings.EMAIL_HOST_USER, (email,)) 
                         return HttpResponseRedirect('/account/activate_account')
                 else:
                     form.add_error(None, 'Неправильный логин или пароль')
