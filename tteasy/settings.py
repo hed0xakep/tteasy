@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-0_3c^90pf%lyea863v1@dt-*_q-ptfl)liyw&de^hh!(%y0q(0
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 
@@ -21,17 +21,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'social_django',
     'user_profiles',
     'matches',
     'stats',
     'homepage',
-    #'cities',
 
 ]
 
 MIDDLEWARE = [
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,22 +60,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tteasy.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
 
@@ -99,9 +86,6 @@ AUTHENTICATION_BACKENDS = [
     'accounts.email_backend.CustomBackend'
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -112,9 +96,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
