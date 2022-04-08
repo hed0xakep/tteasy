@@ -8,7 +8,8 @@ SECRET_KEY = 'django-insecure-0_3c^90pf%lyea863v1@dt-*_q-ptfl)liyw&de^hh!(%y0q(0
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 
 
 INSTALLED_APPS = [
@@ -72,6 +73,9 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
