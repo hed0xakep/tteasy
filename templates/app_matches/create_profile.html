@@ -1,6 +1,0 @@
-<form method='post' action='{% url "create_profile" %}'>
-  {% csrf_token %}
-  {{ form }}
-  {{ form.errors }}
-  <input name="confirm_btn" type="submit" value="Save" class="btn btn_primary"></input>
-  </form>

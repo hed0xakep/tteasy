@@ -3,11 +3,9 @@
 {% block content %}
 {% if user.avatar %}
 <a href={{ user.avatar.url }}>Download</a>
-sdfgdsgdsgdf
       <img src="{{ user.avatar.url }}" width="600" height="338">
         </img>
 {% else %}
-sdfsdfsdfsfsfsfsfsfsfsfsf
 {% endif %}
 <h1>{{ user.username }}</h1>
 <h3>{{ user.first_name }} {{ user.last_name }}</h3>

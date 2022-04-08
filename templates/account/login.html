@@ -7,5 +7,6 @@
   {{ form|crispy }}
   <input name="register" type="submit" value="Log In" class="btn btn_primary"></input>
 </form>
+<a href="{% url 'register' %}">Sign Up</a><br>
 <a href="{% url 'password_reset' %}">Forgot your password?</a>
 {% endblock %}

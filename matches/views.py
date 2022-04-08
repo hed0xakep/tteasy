@@ -239,7 +239,7 @@ class AddMatchView(View):
                 if match.video:
                     match.is_public = True
                 match.save()
-                return HttpResponse('Match added')
+                return render(request, 'matches/match_added.html')
             else:
                 return render(request, 'matches/create_match.html', {'form': form})
         else:
