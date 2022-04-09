@@ -1,7 +1,6 @@
 from django.urls import path, include
 from . import views
 from django.contrib.auth.views import PasswordChangeView
-from django.contrib.auth import logout
 
 urlpatterns = [
     path('login/', views.custom_login, name='login'),

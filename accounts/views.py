@@ -90,36 +90,35 @@ def custom_login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/')
 
-    match request.method:
-        case 'POST':
-            form = forms.LoginForm(request.POST)
+    if request.method == 'POST':
 
-            if form.is_valid():
-                username = form.cleaned_data.get('username')
-                password = form.cleaned_data.get('password')
-                user = authenticate(username=username, password=password)
+        form = forms.LoginForm(request.POST)
 
-                if user:
-                    if user.is_active:
-                        login(request, user)
-                        return HttpResponseRedirect('/')
-                    else:
-                        request.session['username'] = username
-                        email = user.email
-                        code = generate_code()
-                        print('------------CODE------------\n',code,'\n------------CODE------------')
-                        request.session['code'] = code
-                        #send_mail('tteasy', code, settings.EMAIL_HOST_USER, (email,)) 
-                        return HttpResponseRedirect('/account/activate_account')
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+
+            if user:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/')
                 else:
-                    form.add_error(None, 'Неправильный логин или пароль')
-                    return render(request, 'account/login.html', {'form': form})
+                    request.session['username'] = username
+                    email = user.email
+                    code = generate_code()
+                    print('------------CODE------------\n',code,'\n------------CODE------------')
+                    request.session['code'] = code
+                    #send_mail('tteasy', code, settings.EMAIL_HOST_USER, (email,))
+                    return HttpResponseRedirect('/account/activate_account')
+            else:
+                form.add_error(None, 'Неправильный логин или пароль')
+                return render(request, 'account/login.html', {'form': form})
 
-            return render(request, 'account/login.html', {'form': form})
+        return render(request, 'account/login.html', {'form': form})
 
-        case 'GET':
-            form = forms.LoginForm
-            return render(request, 'account/login.html', {'form': form})
+    form = forms.LoginForm
+    return render(request, 'account/login.html', {'form': form})
 
 
 

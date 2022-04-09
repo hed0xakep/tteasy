@@ -13,6 +13,7 @@ urlpatterns = [
     path('statistics/', include('stats.urls')),
     path('players/', all_players, name='all_players'),
     path('social_auth/', include('social_django.urls')),
+    path('advt/', include('advt.urls')),
 
     path('password_reset/',
         auth_views.PasswordResetView.as_view(template_name='account/reset_password/password_reset.html'),

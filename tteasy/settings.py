@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'matches',
     'stats',
     'homepage',
+    'advt'
 
 ]
 

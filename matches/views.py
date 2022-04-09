@@ -304,15 +304,13 @@ class ConfirmMatchView(View):
 
             match = MatchModel.objects.get(slug=slug)
 
-            match request.user:
-                case match.p1:
-                    return HttpResponseRedirect(reverse('detail_match', kwargs={'slug':slug}))
-                case match.p2:
-                    context = {}
-                    context['match'] = match
-                    return render(request, 'matches/confirm_match.html', context)
-                case _:
-                    return HttpResponseRedirect('/')
+            if request.user == match.p1:
+                return HttpResponseRedirect(reverse('detail_match', kwargs={'slug':slug}))
+            if request.user == match.p2:
+                context = {}
+                context['match'] = match
+                return render(request, 'matches/confirm_match.html', context)
+            return HttpResponseRedirect('/')
 
         raise Http404
 
