@@ -1,9 +1,15 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import get_user_model
-from django.http import Http404
+from django.http import ( HttpResponse,
+                        HttpResponseNotFound,
+                        HttpResponseRedirect,
+                        Http404 )
+from django.shortcuts import render
+from matches.models import MatchModel
+from stats.models import PublicStatisticsModel
+from django.db.models import Q
+
 
 CustomUser = get_user_model()
 
@@ -14,6 +20,33 @@ def percents(val, val2):#функция принимает два числа и 
     percents1 = round(val/percent, 1)
     percents2 = round(val2/percent, 1)
     return (percents1, percents2)
+
+def get_user_place(user, criterion):
+    stats_models = list(PublicStatisticsModel.objects.all().order_by(criterion))
+    place = 1
+    for model in stats_models:
+        print(model.user)
+        print(model.wins)
+        if model.user == user:
+            return place
+        else:
+            place +=1
+
+def showprofile(request, user):
+    if not CustomUser.objects.filter(username=user).exists():
+        raise Http404
+    user = CustomUser.objects.get(username=user)
+    matches = MatchModel.objects.filter(Q(p1=user) | Q(p2=user), is_confirmed=True)
+    win_place = get_user_place(user, 'wins')
+    print(win_place, 'place')
+    context = {}
+    context['user'] = user
+    context['matches'] = matches
+    if user.gender == 'm':
+        context['gender'] = 'Мужской'
+    else:
+        context['gender'] = 'Женский'
+    return render(request, 'profiles/profile.html', context)
 
 def statistics(request, user):
     ###################################################################

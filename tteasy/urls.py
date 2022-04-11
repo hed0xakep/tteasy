@@ -10,7 +10,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
     path('matches/', include('matches.urls')),
-    path('statistics/', include('stats.urls')),
     path('players/', all_players, name='all_players'),
     path('social_auth/', include('social_django.urls')),
     path('advt/', include('advt.urls')),
@@ -30,8 +29,7 @@ urlpatterns = [
     path('password-reset-complete/',
          auth_views.PasswordResetCompleteView.as_view(template_name='account/reset_password/password_reset_complete.html'),
          name='password_reset_complete'),
-
-    path('<user>/', include('user_profiles.urls'))
+    path('<user>/', include('stats.urls'))
 ]
 
 if settings.DEBUG:

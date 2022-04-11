@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserChangeForm
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'birth_date', 'info', 'avatar')
+        fields = ('username', 'first_name', 'last_name', 'email', 'gender', 'info', 'avatar')
         widgets = {
             'info': forms.Textarea(),
         }
@@ -17,7 +17,7 @@ class CustomUserChangeForm(UserChangeForm):
         self.fields.pop('password')
     class Meta:
         model = CustomUser
-        fields = ('first_name', 'last_name', 'gender', 'birth_date', 'info', 'avatar')
+        fields = ('first_name', 'last_name', 'gender', 'info', 'avatar')
 
         widgets = {
             'info': forms.Textarea(),

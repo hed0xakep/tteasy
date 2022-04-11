@@ -1,7 +1,7 @@
 from stats.models import PublicStatisticsModel, PrivateStatisticsModel
 from django.contrib.auth.tokens import PasswordResetTokenGenerator, default_token_generator
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.contrib.auth.forms import PasswordResetForm
@@ -22,6 +22,14 @@ def generate_code():
     for i in range(4):
         code+=str(randint(0, 9))
     return code
+
+def validate_username(request):
+    """Проверка доступности логина"""
+    username = request.GET.get('username', None)
+    response = {
+        'is_taken': CustomUser.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(response)
 
 class RegisterView(View):
     def post(self, request):
