@@ -16,7 +16,7 @@ def add_post(request):
         if form.is_valid():
             now = dt.datetime.now()
             del_date = form.cleaned_data['del_date']
-            if dt.datetime.strptime(del_date, '%d.%m.%Y') < now:
+            if del_date < now:
                 response = {
                     'success': False,
                     'message': 'Неверная дата'
