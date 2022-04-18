@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import FileExtensionValidator
-from accounts.models import CustomUser
+from user.models import CustomUser, ProfileModel
 
 
 
@@ -26,16 +26,6 @@ class MatchModel(models.Model):
     likes = models.ManyToManyField(CustomUser)
     is_public = models.BooleanField(default=False)
     is_confirmed = models.BooleanField(default=False)
-
-    def like(self, user):
-        if user in self.likes.all():
-            self.likes.remove(user)
-            return
-        self.likes.add(user)
-
-    @property
-    def likes(self):
-        return self.likes.count()
 
     def get_absolute_url(self):
         return reverse('detail_match', kwargs={'slug':self.slug})
