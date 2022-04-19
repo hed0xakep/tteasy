@@ -4,5 +4,6 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('djoser.urls')),                  #регистрация
-    re_path(r'^auth/', include('djoser.urls.authtoken')),       #авторизация по токену
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
+    path('api/user/', include('user.urls'))     #авторизация по токену
 ]

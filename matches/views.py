@@ -15,7 +15,7 @@ from time import time
 import os.path
 import os
 
-CustomUser = get_user_model()
+User = get_user_model()
 MatchModel = models.MatchModel
 
 
@@ -27,7 +27,7 @@ def match_is_valid(form):
     rounds = []
     score1 = 0
     score2 = 0
-    if not CustomUser.objects.filter(username=username).exists():
+    if not User.objects.filter(username=username).exists():
         form.add_error('p2', 'Пользователя не существует')
         return (False, form)
 
@@ -229,7 +229,7 @@ class AddMatchView(View):
             if result:
                 p1 = request.user
                 p2 = form.cleaned_data.get('p2')
-                p2 = CustomUser.objects.get(username=p2)
+                p2 = User.objects.get(username=p2)
                 slug = f'{p1}-{p2}-{str(int(time()))}'
                 match = form.save(commit=False)
                 match.p1 = p1

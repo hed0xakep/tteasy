@@ -11,7 +11,7 @@ from stats.models import PublicStatisticsModel
 from django.db.models import Q
 
 
-CustomUser = get_user_model()
+User = get_user_model()
 
 def percents(val, val2):#функция принимает два числа и возвращает их пропорцию в процентах
     percent = (val+val2)/100
@@ -33,9 +33,9 @@ def get_user_place(user, criterion):
             place +=1
 
 def showprofile(request, user):
-    if not CustomUser.objects.filter(username=user).exists():
+    if not User.objects.filter(username=user).exists():
         raise Http404
-    user = CustomUser.objects.get(username=user)
+    user = User.objects.get(username=user)
     matches = MatchModel.objects.filter(Q(p1=user) | Q(p2=user), is_confirmed=True)
     win_place = get_user_place(user, 'wins')
     print(win_place, 'place')
@@ -53,11 +53,11 @@ def statistics(request, user):
     #переменные с припиской private относятся к приватной статистике,#
     #все остальное - к публичной                                      #
     ###################################################################
-    if not CustomUser.objects.filter(username=user).exists():
+    if not User.objects.filter(username=user).exists():
         raise Http404
     context = {}
 
-    user = CustomUser.objects.get(username=user)
+    user = User.objects.get(username=user)
     private_stat = user.private_stat#приватная стата игрока и публичная
     public_stat = user.public_stat
 

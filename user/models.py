@@ -3,11 +3,10 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import UserManager
 from django.db import models
-
-
+from django.contrib.auth import get_user_model
 
 class CustomUser(AbstractUser):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     objects = UserManager()
 
 class ProfileModel(models.Model):
@@ -15,7 +14,7 @@ class ProfileModel(models.Model):
         ('m', 'Male'),
         ('f', 'Female')
     )
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile', null=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name =  models.CharField(max_length=30, blank=True)
     gender = models.CharField(max_length=1, choices=GENDERS, default='m')
@@ -25,9 +24,9 @@ class ProfileModel(models.Model):
     avatar = models.ImageField(upload_to='avatars/', blank=True)
 
     def save(self, *args, **kwargs):
-        profile = self.save(*args, **kwargs, commit=False)
-        pub_stat = PublicStatisticsModel.objects.create()
-        private_stat = PrivateStatisticsModel.objects.create()
-        profile.private_stat = private_stat
-        profile.public_stat = pub_stat
-        profile.save()
+        if not self.id:
+            pub_stat = PublicStatisticsModel.objects.create()
+            private_stat = PrivateStatisticsModel.objects.create()
+            self.private_stat = private_stat
+            self.public_stat = pub_stat
+        super().save(*args, **kwargs)
